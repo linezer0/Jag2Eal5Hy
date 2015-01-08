@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>@yield('title')</title>
+        <meta name="description" content="@yield('description')">
+        <meta name="author" content="@yield('author')">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        {{ HTML::style('css/style.css') }}
+    </head>
+
+    <body>
+    @include('layouts.menu')
+        <div class="container col-md-5">
+            <div class="starter-template">
+                @if(Session::has('flash_message'))
+                    <?php $flash_message = Session::get('flash_message') ?>
+                    <div class="alert alert-success" role="alert">{{ $flash_message }}</div>
+                @endif
+                @yield('content')
+            </div>
+        </div><!-- /.container -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
