@@ -22,8 +22,8 @@
                             Projections <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li> {{link_to('/', 'Nouvelle projection')}}</li>
-                            <li> {{link_to('/', 'Toutes les projections')}}</li>
+                            <li> {{link_to_route('projections.create', 'Nouvelle projection')}}</li>
+                            <li> {{link_to_route('projections.index', 'Toutes les projections')}}</li>
                         </ul>
                     </li>
                     <li>{{ link_to('/logout', 'Logout') }}</li>

@@ -9,7 +9,12 @@ class ProjectionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$projections = DB::table('projections')
+			->join('salles', 'projections.salle_id', '=', 'salles.id')
+			->join('films', 'projections.film_id', '=', 'films.id')
+			->get();
+		return $projections;
+		return View::make('projections.index', ['projections' => $projections]);
 	}
 
 
@@ -20,7 +25,10 @@ class ProjectionsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('projections.create');
+		$movies = DB::table('films')->lists('libelle', 'id');
+		$salles = DB::table('salles')->lists('name', 'id');
+		$jours = Projection::$jours;
+		return View::make('projections.create', ['movies' => $movies, 'salles' => $salles, 'jours' => $jours]);
 	}
 
 
@@ -31,9 +39,20 @@ class ProjectionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+		$validation = Validator::make($input, Projection::$rules);
+		if($validation->fails()) {
+			return Redirect::back()->withErrors($validation)->withInput();
+		}
+		$projection = Projection::create([
+			'date_seance' => new DateTime($input['date_seance']),
+			'heure_debut' => date($input['heure_debut']),
+			'heure_fin' => date($input['heure_fin']),
+			'salle_id' => $input['salle'],
+			'film_id' => $input['film']
+		]);
+		return Redirect::route('projections.show', ['id'=> $projection->id])->with('flash_message', 'La projection a bien été créée !');
 	}
-
 
 	/**
 	 * Display the specified resource.
@@ -43,44 +62,11 @@ class ProjectionsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$projection = Projection::find($id);
+		$salle = Salle::find($projection->salle_id)->name;
+		$film = Film::find($projection->film_id);
+		$film_libelle = $film->libelle;
+		$categorie = FilmCategorie::find($film->film_categorie_id)->libelle;
+		return View::make('projections.show', ['projection' => $projection, 'salle' => $salle, 'film_libelle' => $film_libelle, 'categorie' => $categorie]);
 	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
 }

@@ -1,6 +1,7 @@
 <?php
 
 class SessionsController extends \BaseController {
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -19,17 +20,19 @@ class SessionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::all();
-		$attempt = Auth::attempt([
-			'username' => $input['username'],
-			'password' => $input['password']
-		]);
+//		$input = Input::all();
+//		$attempt = Auth::attempt([
+//			'username' => $input['username'],
+//			'password' => $input['password']
+//		]);
+
+		$attempt = Auth::attempt($input = Input::only('username', 'password'));
 
 		if($attempt) {
-			return Redirect::to('/profile')->with('flash_message', 'You are now logged in ' . Auth::user()->username . '! Nice to have you back!');;
+			return Redirect::to('/profile')->with('flash_message', 'You are now logged in as ' . Auth::user()->username . '! Nice to have you back!');;
 		}
 		else {
-			return Redirect::back()->with('flash_message', 'Something went wrong');
+			return Redirect::back()->with('flash_message', 'Something went wrong')->withInput();
 		}
 	}
 

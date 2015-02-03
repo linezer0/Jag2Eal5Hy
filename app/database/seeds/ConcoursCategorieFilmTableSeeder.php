@@ -16,6 +16,8 @@ class ConcoursCategorieFilmTableSeeder extends Seeder {
 				'film_id' => $index
 			]);
 		}
+
+
 	}
 
 }

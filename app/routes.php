@@ -23,5 +23,8 @@ Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
 
 // Projections
-Route::resource('projections', 'ProjectionsController', ['only' => ['index', 'create', 'store', 'destroy']]);
+Route::resource('projections', 'ProjectionsController', ['only' => ['index', 'create', 'store','show', 'destroy']]);
 
+Route::get('/demo', function() {
+    return View::make('demo');
+});

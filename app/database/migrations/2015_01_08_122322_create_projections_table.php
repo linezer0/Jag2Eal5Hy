@@ -15,8 +15,9 @@ class CreateProjectionsTable extends Migration {
 		Schema::create('projections', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->dateTime('date_heure_debut');
-			$table->dateTime('date_heure_fin');
+			$table->date('date_seance');
+			$table->time('heure_debut');
+			$table->time('heure_fin');
 			$table->integer('film_id')->unsigned();
 			$table->integer('salle_id')->unsigned();
 			$table->timestamps();

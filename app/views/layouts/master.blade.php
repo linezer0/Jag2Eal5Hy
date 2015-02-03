@@ -10,11 +10,13 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         {{ HTML::style('css/style.css') }}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </head>
 
     <body>
     @include('layouts.menu')
-        <div class="container col-md-5">
+        <div class="container">
             <div class="starter-template">
                 @if(Session::has('flash_message'))
                     <?php $flash_message = Session::get('flash_message') ?>
@@ -23,7 +25,5 @@
                 @yield('content')
             </div>
         </div><!-- /.container -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </body>
 </html>
