@@ -18,7 +18,7 @@ Route::get('profile', 'PagesController@profile')->before('customAuth');
 Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'store', 'destroy']]);
 
 // Authentification
-Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
+Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy'] ]);
 Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
 
