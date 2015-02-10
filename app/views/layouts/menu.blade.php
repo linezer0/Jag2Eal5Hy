@@ -49,9 +49,6 @@
                     <li>{{ link_to('/logout', 'Logout') }}</li>
                 @endif
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Your profile</a></li>
-            </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
