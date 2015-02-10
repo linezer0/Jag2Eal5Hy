@@ -35,8 +35,6 @@
                 <td> {{ $categorie }}</td>
             </tr>
         </tbody>
-
     </table>
 
-    </table>
 @stop

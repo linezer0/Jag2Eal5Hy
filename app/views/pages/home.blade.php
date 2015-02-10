@@ -15,4 +15,5 @@
 @section('content')
     <h1>Bienvenue sur WeCannes !</h1>
     <p class="lead">WeCannes est l'application utilisée par le Festival de Cannes pour sa gestion interne.<br>Une fois connecté, vous aurez accès aux fonctionnalités relatives à la gestion de l'hébergement et des projections de films.</p>
+    @include('forms.sessions.create')
 @stop

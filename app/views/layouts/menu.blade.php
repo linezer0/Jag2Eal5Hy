@@ -19,6 +19,26 @@
                     <li @if(Request::path() == '/admin') class="active" @endif>{{ link_to('profile', 'Home') }}</li>
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            Gestion des utilisateurs <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li> {{link_to_route('projections.create', 'Liste des demandes d\'accès')}}</li>
+                            <li> {{link_to_route('projections.index', 'Liste des utilisateurs')}}</li>
+                            <li> {{link_to_route('projections.create', 'Ajouter un nouvel utilisateur')}}</li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            Hébergement <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li> {{link_to_route('projections.create', 'Ajouter un hébergement')}}</li>
+                            <li> {{link_to_route('projections.index', 'Nouvelle réservation')}}</li>
+                            <li> {{link_to_route('projections.create', 'Liste des réservations')}}</li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                             Projections <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">

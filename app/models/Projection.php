@@ -26,4 +26,12 @@ class Projection extends \Eloquent {
 	];
 
 	protected $table = 'projections';
+
+	public function salle() {
+		return $this->belongsTo("Salle");
+	}
+
+	public function film() {
+		return $this->belongsTo("Film");
+	}
 }

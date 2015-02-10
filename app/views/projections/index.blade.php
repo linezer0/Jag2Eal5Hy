@@ -26,8 +26,16 @@
             </tr>
         </thead>
         <tbody>
-        @foreach
+            @foreach($projections as $projection)
+                    <tr>
+                        <td>{{ $projection->date_seance }}</td>
+                        <td>{{ $projection->heure_debut }}</td>
+                        <td>{{ $projection->heure_fin }}</td>
+                        <td>{{ $salle }}</td>
+                        <td>{{$film_libelle }}</td>
+                        <td> {{ $categorie }}</td>
+                    </tr>
+            @endforeach
         </tbody>
-
     </table>
 @stop

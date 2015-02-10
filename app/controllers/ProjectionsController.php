@@ -9,11 +9,7 @@ class ProjectionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$projections = DB::table('projections')
-			->join('salles', 'projections.salle_id', '=', 'salles.id')
-			->join('films', 'projections.film_id', '=', 'films.id')
-			->get();
-		return $projections;
+		$projections = Projection::all();
 		return View::make('projections.index', ['projections' => $projections]);
 	}
 
