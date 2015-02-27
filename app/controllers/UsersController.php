@@ -9,7 +9,7 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('users.index', ['users' => User::all()]);
+		return View::make('users.index', ['users' => User::with('roles')->get()]);
 	}
 
 
@@ -39,13 +39,17 @@ class UsersController extends \BaseController {
 
 		$user = User::create([
 			'username' => Input::get('username'),
+			'nom' => Input::get('nom'),
+			'prenom' => Input::get('prenom'),
 			'email' => Input::get('email'),
 			'password' => Hash::make(Input::get('password'))
 		]);
 
+		$user->assignRole(Role::whereName('guest')->first());
+
 		$user->save();
 
-		return Redirect::route('home')->with('flash_message', 'User created! You may now login.');
+		return Redirect::route('profile')->with('flash_message', 'L\'utilisateur a bien été créé !');
 	}
 
 
@@ -95,6 +99,5 @@ class UsersController extends \BaseController {
 	{
 		//
 	}
-
 
 }

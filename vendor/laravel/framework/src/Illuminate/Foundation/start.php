@@ -201,7 +201,7 @@ Request::enableHttpMethodParameterOverride();
 |
 | The Illuminate core service providers register all of the core pieces
 | of the Illuminate framework including session, caching, encryption
-| and more. It's simply a convenient wrapper for the sessions.
+| and more. It's simply a convenient wrapper for the registration.
 |
 */
 

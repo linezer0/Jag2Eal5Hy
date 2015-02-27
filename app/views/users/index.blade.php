@@ -21,6 +21,7 @@
                 <th>ID</th>
                 <th>username</th>
                 <th>email</th>
+                <th>roles</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,11 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->username }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>
+                    @foreach($user->roles as $role)
+                        {{ $role->name }}
+                    @endforeach
+
                 </tr>
             @endforeach
         </tbody>

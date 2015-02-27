@@ -9,10 +9,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
-	public $fillable = ['username', 'email', 'password'];
+	public $fillable = ['username', 'prenom', 'nom', 'email', 'password'];
 
 	public static $rules = [
 		'username' => 'required|between:1,20|unique:users',
+		'nom' => 'required|between:1,30',
+		'prenom' => 'required|between:1,30',
 		'email' => 'required|email|unique:users',
 		'password' => 'required|min:8|confirmed'
 	];
@@ -31,4 +33,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	public function roles() {
+		return $this->belongsToMany('Role');
+	}
+
+	public function hasRole($name) {
+		foreach($this->roles as $role) {
+			if($role->name == $name) return true;
+		}
+		return false;
+	}
+
+	public function assignRole($role) {
+		$this->roles()->attach($role);
+	}
+
+	public function removeRole($role) {
+		$this->roles()->detach($role);
+	}
 }

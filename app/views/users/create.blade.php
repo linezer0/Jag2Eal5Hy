@@ -22,6 +22,16 @@
             {{ $errors->first('username') }}
         </div>
         <div class="form-group">
+            {{ Form::label('prenom', 'Prénom') }}
+            {{ Form::text('prenom', Input::old('prenom'), ['class' => 'form-control', 'placeholder' => 'Jean'] ) }}
+            {{ $errors->first('prenom') }}
+        </div>
+        <div class="form-group">
+            {{ Form::label('nom', 'Nom de de famille') }}
+            {{ Form::text('nom', Input::old('nom'), ['class' => 'form-control', 'placeholder' => 'Durand'] ) }}
+            {{ $errors->first('nom') }}
+        </div>
+        <div class="form-group">
             {{ Form::label('email', 'Adresse mail') }}
             {{ Form::text('email', Input::old('email'), ['class' => 'form-control','placeholder' => 'jean.durand@iaelyon.fr'] ) }}
             {{ $errors->first('email') }}

@@ -503,6 +503,11 @@ class Router implements HttpKernelInterface, RouteFiltererInterface {
 	{
 		$group = str_replace('/', '.', $this->getLastGroupPrefix());
 
+		if (empty($group))
+		{
+			return trim("{$prefix}{$resource}.{$method}", '.');
+		}
+
 		return trim("{$prefix}{$group}.{$resource}.{$method}", '.');
 	}
 
@@ -867,7 +872,7 @@ class Router implements HttpKernelInterface, RouteFiltererInterface {
 	}
 
 	/**
-	 * Add the necessary where clauses to the route based on its initial sessions.
+	 * Add the necessary where clauses to the route based on its initial registration.
 	 *
 	 * @param  \Illuminate\Routing\Route  $route
 	 * @return \Illuminate\Routing\Route

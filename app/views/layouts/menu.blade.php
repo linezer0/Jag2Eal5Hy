@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav">
                 @if(! Auth::check())
                     <li @if(Request::path() == '/') class="active" @endif>{{ link_to('/', 'Home') }}</li>
-                    <li @if(Request::path() === 'users/create') class="active" @endif>{{ link_to('/users/create', 'Register') }}</li>
+                    <li @if(Request::path() == 'accessrequests/create') class="active" @endif>{{ link_to_route('accessrequests.create', 'Demande d\'accès') }}</li>
                     <li @if(Request::path() === 'login') class="active" @endif>{{ link_to('/login', 'Login') }}</li>
                 @else
                     <li @if(Request::path() == '/admin') class="active" @endif>{{ link_to('profile', 'Home') }}</li>
@@ -22,9 +22,9 @@
                             Gestion des utilisateurs <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li> {{link_to_route('projections.create', 'Liste des demandes d\'accès')}}</li>
-                            <li> {{link_to_route('projections.index', 'Liste des utilisateurs')}}</li>
-                            <li> {{link_to_route('projections.create', 'Ajouter un nouvel utilisateur')}}</li>
+                            <li> {{link_to_route('accessrequests.index', 'Liste des demandes d\'accès')}}</li>
+                            <li> {{link_to_route('users.index', 'Liste des utilisateurs')}}</li>
+                            <li> {{link_to_route('users.create', 'Ajouter un nouvel utilisateur')}}</li>
                         </ul>
                     </li>
                     <li role="presentation" class="dropdown">

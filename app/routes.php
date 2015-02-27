@@ -12,7 +12,7 @@
 */
 
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
-Route::get('profile', 'PagesController@profile')->before('customAuth');
+Route::get('profile', ['as' => 'profile', 'uses' => 'PagesController@profile'])->before('customAuth');
 
 // Registration
 Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'store', 'destroy']]);
@@ -25,6 +25,15 @@ Route::get('logout', 'SessionsController@destroy');
 // Projections
 Route::resource('projections', 'ProjectionsController', ['only' => ['index', 'create', 'store','show', 'destroy']]);
 
+Route::get('projections/create', 'ProjectionsController@create')->before('role:administrator');
+
+Route::resource('accessrequests', 'AccessRequestsController', ['only' => ['index', 'create', 'store','show', 'destroy']]);
+Route::get('accessrequests/{accessrequests}/createUser', ['as' => 'accessrequests.createUser', 'uses' => 'AccessRequestsController@createUser']);
+
 Route::get('/demo', function() {
-    return View::make('demo');
+    $user = User::first();
+    $user = User::with('roles')->find(1);
+    $role = Role::whereName('administrator')->first();
+
+    return $user;
 });

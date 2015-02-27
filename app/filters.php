@@ -103,3 +103,9 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('role', function($route, $request, $role) {
+	if(! Auth::user()->hasRole($role)) {
+		return Redirect::route('profile')->with('flash_message', 'Vous n\'avez pas accès à cette fonctionnalité');
+	}
+});

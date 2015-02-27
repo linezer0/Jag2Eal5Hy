@@ -31,9 +31,9 @@
                         <td>{{ $projection->date_seance }}</td>
                         <td>{{ $projection->heure_debut }}</td>
                         <td>{{ $projection->heure_fin }}</td>
-                        <td>{{ $salle }}</td>
-                        <td>{{$film_libelle }}</td>
-                        <td> {{ $categorie }}</td>
+                        <td>{{ $projection->salle->name }}</td>
+                        <td>{{ $projection->film->libelle }}</td>
+                        <td> {{ $projection->film->categorie }}</td>
                     </tr>
             @endforeach
         </tbody>

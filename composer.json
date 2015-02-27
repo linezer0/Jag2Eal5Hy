@@ -5,12 +5,11 @@
 	"license": "MIT",
 	"type": "project",
 	"require-dev": {
-	  "way/generators": "~2.0"
 	},
 	"require": {
 		"laravel/framework": "4.2.*",
 	  	"fzaninotto/faker": "1.4.0",
-	  	"cartalyst/sentry": "2.1.*"
+	  	"way/generators": "~2.0"
 	},
 	"autoload": {
 		"classmap": [

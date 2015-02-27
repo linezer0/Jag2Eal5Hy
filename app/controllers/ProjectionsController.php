@@ -9,8 +9,8 @@ class ProjectionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$projections = Projection::all();
-		return View::make('projections.index', ['projections' => $projections]);
+		$projections = Projection::with('salle', 'film')->get();
+		return View::make('projections.index', ['projections' => $projections,]);
 	}
 
 
