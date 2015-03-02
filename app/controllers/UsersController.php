@@ -42,6 +42,7 @@ class UsersController extends \BaseController {
 			'nom' => Input::get('nom'),
 			'prenom' => Input::get('prenom'),
 			'email' => Input::get('email'),
+			'date_naissance' => Input::get('date_naissance'),
 			'password' => Hash::make(Input::get('password'))
 		]);
 

@@ -16,12 +16,6 @@
     <h1>Créer un nouvel utilisateur à partir d'une demande d'accès</h1>
     {{ Form::open() }}
     <div class="form-group">
-        {{ Form::label('username', 'Nom d\'utilisateur') }}
-        {{ Form::text('username', $username, ['class' => 'form-control', 'placeholder' => 'jeandurand'] ) }}
-        {{ $errors->first('username') }}
-    </div>
-
-    <div class="form-group">
         {{ Form::label('prenom', 'Prénom') }}
         {{ Form::text('prenom', $accessrequest->prenom, ['class' => 'form-control', 'placeholder' => 'Jean', 'readonly' => 'readonly'] ) }}
         {{ $errors->first('prenom') }}
@@ -35,6 +29,11 @@
         {{ Form::label('email', 'Adresse mail') }}
         {{ Form::text('email', $accessrequest->email, ['class' => 'form-control', 'readonly' => 'readonly'] ) }}
         {{ $errors->first('email') }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('date_naissance', 'Date de naissance') }}
+        {{ Form::text('date_naissance', $accessrequest->email, ['class' => 'form-control', 'readonly' => 'readonly'] ) }}
+        {{ $errors->first('date_naissance') }}
     </div>
     <div class="form-group">
         {{ Form::label('password', 'Mot de passe') }}
