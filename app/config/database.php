@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'festival_cannes',
+			'database'  => 'wecannes',
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',
