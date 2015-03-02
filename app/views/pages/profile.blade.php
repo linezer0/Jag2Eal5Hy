@@ -23,11 +23,11 @@
                     <h3 class="panel-title">Gestion des utilisateurs</h3>
                 </div>
                 <div class="panel-body">
-                    <ul>
-                        <li>Ajouter un nouvel utilisateur</li>
-                        <li>Liste des demandes d'accès</li>
-                        <li>Liste des utilisateurs</li>
-                    </ul>
+                  <ul>
+                      <li> {{link_to_route('accessrequests.index', 'Liste des demandes d\'accès')}}</li>
+                      <li> {{link_to_route('users.index', 'Liste des utilisateurs')}}</li>
+                      <li> {{link_to_route('users.create', 'Ajouter un nouvel utilisateur')}}</li>
+                  </ul>
                 </div>
             </div>
         </div>
@@ -38,11 +38,11 @@
                     <h3 class="panel-title">Gestion de l'hébergement</h3>
                 </div>
                 <div class="panel-body">
-                    <ul>
-                        <li>Ajouter un nouvel utilisateur</li>
-                        <li>Liste des demandes d'accès</li>
-                        <li>Liste des utilisateurs</li>
-                    </ul>
+                  <ul>
+                      <li> {{link_to_route('accessrequests.index', 'Liste des demandes d\'accès')}}</li>
+                      <li> {{link_to_route('users.index', 'Liste des utilisateurs')}}</li>
+                      <li> {{link_to_route('users.create', 'Ajouter un hébergement')}}</li>
+                  </ul>
                 </div>
             </div>
         </div>
@@ -53,11 +53,12 @@
                     <h3 class="panel-title">Gestion des projections</h3>
                 </div>
                 <div class="panel-body">
-                    <ul>
-                        <li>Ajouter un nouvel utilisateur</li>
-                        <li>Liste des demandes d'accès</li>
-                        <li>Liste des utilisateurs</li>
-                    </ul>
+                  <ul>
+                    <li> {{link_to_route('projections.show', 'Afficher une projection')}}</li>
+
+                      <li> {{link_to_route('projections.index', 'Liste des projections')}}</li>
+                      <li> {{link_to_route('projections.create', 'Ajouter une projection')}}</li>
+                  </ul>
                 </div>
             </div>
         </div>

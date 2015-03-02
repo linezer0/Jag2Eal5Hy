@@ -7,16 +7,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">WeCannes</a>
+            <a class="navbar-brand" href="{{ route('home') }}">WeCannes</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 @if(! Auth::check())
-                    <li @if(Request::path() == '/') class="active" @endif>{{ link_to('/', 'Home') }}</li>
                     <li @if(Request::path() == 'accessrequests/create') class="active" @endif>{{ link_to_route('accessrequests.create', 'Demande d\'accès') }}</li>
                     <li @if(Request::path() === 'login') class="active" @endif>{{ link_to('/login', 'Login') }}</li>
                 @else
-                    <li @if(Request::path() == '/admin') class="active" @endif>{{ link_to('profile', 'Home') }}</li>
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                             Gestion des utilisateurs <span class="caret"></span>
