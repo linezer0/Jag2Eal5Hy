@@ -1,9 +1,9 @@
 <h1>Se connecter à la plateforme</h1>
 {{ Form::open(['route' => 'sessions.store']) }}
 <div class="form-group">
-    {{ Form::label('username', 'Nom d\'utilisateur') }}
-    {{ Form::text('username', Input::old('username'), ['class' => 'form-control', 'placeholder' => 'jeandurand'] ) }}
-    {{ $errors->first('username') }}
+    {{ Form::label('email', 'Adresse mail') }}
+    {{ Form::text('email', Input::old('email'), ['class' => 'form-control', 'placeholder' => 'exemple@mail.fr'] ) }}
+    {{ $errors->first('email') }}
 </div>
 
 <div class="form-group">

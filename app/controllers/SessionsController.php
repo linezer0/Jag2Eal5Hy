@@ -26,7 +26,7 @@ class SessionsController extends \BaseController {
 //			'password' => $input['password']
 //		]);
 
-		$attempt = Auth::attempt($input = Input::only('username', 'password'));
+		$attempt = Auth::attempt($input = Input::only('email', 'password'));
 
 		if($attempt) {
 			return Redirect::to('/profile')->with('flash_message', 'You are now logged in as ' . Auth::user()->username . '! Nice to have you back!');;

@@ -8,7 +8,6 @@ class UsersTableSeeder extends Seeder {
 	public function run()
 	{
 		User::create([
-			'username' => 'thomasparker',
 			'nom' => 'Parker',
 			'prenom' => 'Thomas',
 			'email' => 'thomas@iaelyon.fr',
@@ -16,7 +15,6 @@ class UsersTableSeeder extends Seeder {
 		]);
 
 		User::create([
-			'username' => 'williamgouzien',
 			'nom' => 'Gouzien',
 			'prenom' => 'William',
 			'email' => 'william@iaelyon.fr',
@@ -24,7 +22,6 @@ class UsersTableSeeder extends Seeder {
 		]);
 
 		User::create([
-			'username' => 'sanaemalki',
 			'nom' => 'Malki',
 			'prenom' => 'Sanae',
 			'email' => 'sanae@iaelyon.fr',
@@ -32,7 +29,6 @@ class UsersTableSeeder extends Seeder {
 		]);
 
 		User::create([
-			'username' => 'stephanechango',
 			'nom' => 'Chango',
 			'prenom' => 'Stéphane',
 			'email' => 'stephane@iaelyon.fr',
@@ -40,7 +36,6 @@ class UsersTableSeeder extends Seeder {
 		]);
 
 		User::create([
-			'username' => 'adiaratou',
 			'nom' => 'Ratou',
 			'prenom' => 'Adia',
 			'email' => 'adia@iaelyon.fr',

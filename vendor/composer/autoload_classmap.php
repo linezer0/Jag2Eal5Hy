@@ -7,7 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AccessRequest' => $baseDir . '/app/models/AccessRequest.php',
-    'AccessrequestsController' => $baseDir . '/app/controllers/AccessRequestsController.php',
+    'AccessRequestsController' => $baseDir . '/app/controllers/AccessRequestsController.php',
+    'AddDateNaissanceToUsersTable' => $baseDir . '/app/database/migrations/2015_03_02_163640_add_date_naissance_to_users_table.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Boris\\Boris' => $vendorDir . '/d11wtq/boris/lib/Boris/Boris.php',
     'Boris\\CLIOptionsHandler' => $vendorDir . '/d11wtq/boris/lib/Boris/CLIOptionsHandler.php',
@@ -940,9 +941,7 @@ return array(
     'Patchwork\\PHP\\Shim\\Xml' => $vendorDir . '/patchwork/utf8/class/Patchwork/PHP/Shim/Xml.php',
     'Patchwork\\TurkishUtf8' => $vendorDir . '/patchwork/utf8/class/Patchwork/TurkishUtf8.php',
     'Patchwork\\Utf8' => $vendorDir . '/patchwork/utf8/class/Patchwork/Utf8.php',
-    'Patchwork\\Utf8\\BestFit' => $vendorDir . '/patchwork/utf8/class/Patchwork/Utf8/BestFit.php',
     'Patchwork\\Utf8\\Bootup' => $vendorDir . '/patchwork/utf8/class/Patchwork/Utf8/Bootup.php',
-    'Patchwork\\Utf8\\WindowsStreamWrapper' => $vendorDir . '/patchwork/utf8/class/Patchwork/Utf8/WindowsStreamWrapper.php',
     'Predis\\Autoloader' => $vendorDir . '/predis/predis/lib/Predis/Autoloader.php',
     'Predis\\BasicClientInterface' => $vendorDir . '/predis/predis/lib/Predis/BasicClientInterface.php',
     'Predis\\Client' => $vendorDir . '/predis/predis/lib/Predis/Client.php',
