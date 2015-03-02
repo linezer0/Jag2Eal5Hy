@@ -46,6 +46,7 @@ class AccessRequestsController extends \BaseController {
 			'nom' => Input::get('nom'),
 			'prenom' => Input::get('prenom'),
 			'email' => Input::get('email'),
+			'date_naissance' => Input::get('date_naissance'),
 			'role' => Input::get('role'),
 			'entreprise' => Input::get('entreprise'),
 			'justification' => Input::get('justification'),
