@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateConcoursCategoriesTable extends Migration {
+class CreateFilmsCategoriesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,14 @@ class CreateConcoursCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('concours_categories', function(Blueprint $table)
+		Schema::create('films_categories', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('libelle', 50)->unique();
+            $table->string('libelle', 50);
 			$table->timestamps();
 		});
 	}
+
 
 	/**
 	 * Reverse the migrations.
@@ -27,7 +28,7 @@ class CreateConcoursCategoriesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('concours_categories');
+		Schema::drop('films_categories');
 	}
 
 }

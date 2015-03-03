@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateSallesTable extends Migration {
+class CreateProfilsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,14 @@ class CreateSallesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('salles', function(Blueprint $table)
+		Schema::create('profils', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name', 50)->unique();
-			$table->string('place', 50);
-			$table->integer('capacite');
+            $table->string('libelle', 20);
 			$table->timestamps();
 		});
 	}
+
 
 	/**
 	 * Reverse the migrations.
@@ -29,7 +28,7 @@ class CreateSallesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('salles');
+		Schema::drop('profils');
 	}
 
 }
