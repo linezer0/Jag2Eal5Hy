@@ -46,7 +46,7 @@ class AccessRequestsController extends \BaseController {
 			'nom' => Input::get('nom'),
 			'prenom' => Input::get('prenom'),
 			'email' => Input::get('email'),
-			'date_naissance' => Input::get('date_naissance'),
+			'date_naissance' => new DateTime(Input::get('date_naissance')),
 			'role' => Input::get('role'),
 			'entreprise' => Input::get('entreprise'),
 			'justification' => Input::get('justification'),
@@ -98,8 +98,20 @@ class AccessRequestsController extends \BaseController {
 
 	public function createUser($id) {
 		$accessrequest = AccessRequest::find($id);
-		$username = strtolower($accessrequest->nom) . '' . strtolower($accessrequest->prenom) . '' . Str::random(2);
-		$password = Hash::make($username);
-		return View::make('users.createFromAccessRequest', ['username' => $username, 'password' => $password, 'accessrequest' => $accessrequest]);
+        $user = User::create([
+            'nom' => $accessrequest->nom,
+            'prenom' => $accessrequest->prenom,
+            'email' => $accessrequest->email,
+            'date_naissance' => new DateTime($accessrequest->date_naissance),
+            'password' => Hash::make('hello'),
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime()
+        ]);
+        $user->assignRole(Role::where('name', 'guest')->first());
+        $accessrequest->statut = "Traité";
+        $accessrequest->save();
+        // TODO :
+        // TODO : envoie du mail à l'utilisateur
+		return Redirect::route('accessrequests.show', $id)->with('flash_message', 'L\'utilisateur a bien été créé !');
 	}
 }

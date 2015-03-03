@@ -14,7 +14,7 @@
 
 @section('content')
     <h1>Créer un nouvel utilisateur à partir d'une demande d'accès</h1>
-    {{ Form::open() }}
+    {{ Form::open(['route' => '') }}
     <div class="form-group">
         {{ Form::label('prenom', 'Prénom') }}
         {{ Form::text('prenom', $accessrequest->prenom, ['class' => 'form-control', 'placeholder' => 'Jean', 'readonly' => 'readonly'] ) }}

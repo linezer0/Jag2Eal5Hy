@@ -38,7 +38,6 @@ class UsersController extends \BaseController {
 		}
 
 		$user = User::create([
-			'username' => Input::get('username'),
 			'nom' => Input::get('nom'),
 			'prenom' => Input::get('prenom'),
 			'email' => Input::get('email'),

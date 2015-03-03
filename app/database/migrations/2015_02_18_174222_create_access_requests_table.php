@@ -18,7 +18,7 @@ class CreateAccessRequestsTable extends Migration {
 			$table->string('nom', 30);
 			$table->string('prenom', 30);
 			$table->string('email');
-			$table->string('date_naissance');
+			$table->date('date_naissance');
 			$table->string('role', 30);
 			$table->string('entreprise');
 			$table->text('justification');
