@@ -19,6 +19,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'password' => 'required|min:8|confirmed'
 	];
 
+    public static $roles = ['employe_media' => 'Employé Média', 'employe_film' => 'Employé de film', 'jury' => 'Membre du jury', 'invite' => 'Invité','autre' => 'Autre'];
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -33,19 +35,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
-	public function roles() {
-		return $this->belongsToMany('Role');
+	public function profils() {
+		return $this->belongsToMany('Profil');
 	}
 
-	public function hasRole($name) {
-		foreach($this->roles as $role) {
-			if($role->name == $name) return true;
+	public function hasProfil($libelle) {
+		foreach($this->profils as $profil) {
+			if($profil->libelle == $libelle) return true;
 		}
 		return false;
 	}
 
-	public function assignRole($role) {
-		$this->roles()->attach($role);
+	public function assignProfil($profil) {
+		$this->profils()->attach($profil);
 	}
 
 	public function removeRole($role) {

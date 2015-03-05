@@ -13,19 +13,7 @@ return array(
 	| to have a conventional place to find your various credentials.
 	|
 	*/
-
-	'mailgun' => array(
-		'domain' => '',
-		'secret' => '',
-	),
-
 	'mandrill' => array(
-		'secret' => '',
-	),
-
-	'stripe' => array(
-		'model'  => 'User',
-		'secret' => '',
-	),
-
+		'secret' => '3c-oHuM1FE3bVSCOnloPXA',
+	)
 );

@@ -27,13 +27,14 @@ Route::resource('projections', 'ProjectionsController', ['only' => ['index', 'cr
 
 Route::get('projections/create', 'ProjectionsController@create')->before('role:administrator');
 
+//Access requests
 Route::resource('accessrequests', 'AccessRequestsController', ['only' => ['index', 'create', 'store','show', 'destroy']]);
+Route::get('accessrequests/pending', 'AccessRequestsController@indexPending');
 Route::get('accessrequests/{accessrequests}/createUser', ['as' => 'accessrequests.createUser', 'uses' => 'AccessRequestsController@createUser']);
+Route::resource('participants', 'ParticipantsController');
 
-Route::get('/demo', function() {
-    $user = User::first();
-    $user = User::with('roles')->find(1);
-    $role = Role::whereName('administrator')->first();
-
-    return $user;
+Route::get('/mail', function() {
+    Mail::send('emails.test', [], function($message) {
+       $message->to('thomasparker@outlook.com')->subject('Laracasts Email');
+    });
 });

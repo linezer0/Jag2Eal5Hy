@@ -40,7 +40,7 @@
 
         <div class="form-group">
             {{ Form::label('role', 'Rôle') }}
-            {{ Form::text('role', '', ['class' => 'form-control']) }}
+            {{ Form::select('role', User::$roles, null, ['class' => 'form-control']) }}
             {{ $errors->first('role') }}
         </div>
 

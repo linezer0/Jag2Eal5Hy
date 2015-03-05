@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateProfilUtilisateurTable extends Migration {
+class CreateProfiluserTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,13 @@ class CreateProfilUtilisateurTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('profil_utilisateur', function(Blueprint $table)
+		Schema::create('profil_user', function(Blueprint $table)
 		{
 			$table->integer('profil_id')->unsigned()->index();
 			$table->foreign('profil_id')->references('id')->on('profils')->onDelete('cascade');
-			$table->integer('utilisateur_id')->unsigned()->index();
-			$table->foreign('utilisateur_id')->references('id')->on('utilisateurs')->onDelete('cascade');
-            $table->primary('profil_id', 'utilisateur_id');
+			$table->integer('user_id')->unsigned()->index();
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->primary('profil_id', 'user_id');
 			$table->timestamps();
 		});
 	}
@@ -31,7 +31,7 @@ class CreateProfilUtilisateurTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('profil_utilisateur');
+		Schema::drop('profil_user');
 	}
 
 }

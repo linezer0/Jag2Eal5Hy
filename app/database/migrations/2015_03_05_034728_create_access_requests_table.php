@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateParticipantsTable extends Migration {
+class CreateAccessRequestsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,19 +12,19 @@ class CreateParticipantsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('participants', function(Blueprint $table)
+		Schema::create('access_requests', function(Blueprint $table)
 		{
-			$table->increments('id');
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->increments('id');
             $table->string('nom', 50);
             $table->string('prenom', 50);
             $table->date('date_naissance');
             $table->string('telephone', 20);
             $table->string('email', 50);
             $table->enum('role', ['employe_media', 'employe_film', 'jury', 'invite','autre']);
-            $table->enum('niveau_accreditation', [0, 1, 2, 3, 4, 5, 6]);
-            $table->tinyInteger('credits');
-			$table->timestamps();
+            $table->string('entreprise', 50);
+            $table->text('justification');
+            $table->string('statut', 20);
+            $table->timestamps();
 		});
 	}
 
@@ -36,7 +36,7 @@ class CreateParticipantsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('participants');
+		Schema::drop('access_requests');
 	}
 
 }

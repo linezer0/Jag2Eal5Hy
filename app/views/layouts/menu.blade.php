@@ -21,8 +21,8 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li> {{link_to_route('accessrequests.index', 'Liste des demandes d\'accès')}}</li>
-                            <li> {{link_to_route('users.index', 'Liste des utilisateurs')}}</li>
-                            <li> {{link_to_route('users.create', 'Ajouter un nouvel utilisateur')}}</li>
+                            <li> {{link_to_route('participants.index', 'Liste des participants')}}</li>
+                            <li> {{link_to_route('participants.create', 'Ajouter un nouvel participant')}}</li>
                         </ul>
                     </li>
                     <li role="presentation" class="dropdown">
