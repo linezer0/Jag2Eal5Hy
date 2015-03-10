@@ -21,9 +21,8 @@ class SessionsController extends \BaseController {
 	public function store()
 	{
 		$attempt = Auth::attempt($input = Input::only('email', 'password'));
-
 		if($attempt) {
-			return Redirect::to('/profile')->with('flash_message', 'You are now logged in as ' . Auth::user()->username . '! Nice to have you back!');;
+			return Redirect::to('/profile')->with('flash_message', 'Vous êtes maintenant connecté ! Content de vous revoir !');
 		}
 		else {
 			return Redirect::back()->with(['flash_message' => 'Nous avons pas pu vous identifier. Essayez à nouveau !'])->withInput();
@@ -40,7 +39,7 @@ class SessionsController extends \BaseController {
 	{
 		Auth::logout();
 
-		return Redirect::home()->with('flash_message', 'You are now logged out! See you around!');
+		return Redirect::home()->with('flash_message', 'Vous êtes maintenant déconnecté. A bientôt !');
 	}
 
 

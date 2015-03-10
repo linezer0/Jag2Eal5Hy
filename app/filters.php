@@ -104,8 +104,8 @@ Route::filter('csrf', function()
 	}
 });
 
-Route::filter('role', function($route, $request, $role) {
-	if(! Auth::user()->hasRole($role)) {
+Route::filter('profil', function($route, $request, $profil) {
+	if(! Auth::user()->Profil($profil)) {
 		return Redirect::route('profile')->with('flash_message', 'Vous n\'avez pas accès à cette fonctionnalité');
 	}
 });

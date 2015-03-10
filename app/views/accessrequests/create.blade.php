@@ -37,6 +37,11 @@
             {{ Form::text('date_naissance', '', ['class' => 'form-control', 'placeholder' => 'ex: 01/01/2014'] ) }}
             {{ $errors->first('date_naissance') }}
         </div>
+        <div class="form-group">
+            {{ Form::label('telephone', 'Téléphone') }}
+            {{ Form::text('telephone', '', ['class' => 'form-control'] ) }}
+            {{ $errors->first('telephone') }}
+        </div>
 
         <div class="form-group">
             {{ Form::label('role', 'Rôle') }}

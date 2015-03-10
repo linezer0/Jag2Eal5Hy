@@ -20,10 +20,10 @@ class CreateAccessRequestsTable extends Migration {
             $table->date('date_naissance');
             $table->string('telephone', 20);
             $table->string('email', 50);
-            $table->enum('role', ['employe_media', 'employe_film', 'jury', 'invite','autre']);
+            $table->string('role', 20);
             $table->string('entreprise', 50);
             $table->text('justification');
-            $table->string('statut', 20);
+            $table->enum('statut', ['en_attente', 'acceptee', 'rejetee']);
             $table->timestamps();
 		});
 	}

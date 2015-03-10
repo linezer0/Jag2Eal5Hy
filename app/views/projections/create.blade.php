@@ -29,22 +29,15 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('date_seance', 'Date désirée') }}
-        {{ Form::select('date_seance', $jours, null, ['class' => 'form-control']) }}
-        {{ $errors->first('date_seance') }}
-    </div>
-
-
-    <div class="form-group">
-        {{ Form::label('heure_debut', 'Début de séance') }}
-        {{ Form::text('heure_debut', Input::old('heure_debut'), ['class' => 'form-control','placeholder' => '12:00'] ) }}
-        {{ $errors->first('heure_debut') }}
+        {{ Form::label('date_projection', 'Date désirée') }}
+        {{ Form::select('date_projection', $jours, null, ['class' => 'form-control']) }}
+        {{ $errors->first('date_projection') }}
     </div>
 
     <div class="form-group">
-        {{ Form::label('heure_fin', 'Fin de séance') }}
-        {{ Form::text('heure_fin', Input::old('heure_fin'), ['class' => 'form-control','placeholder' => '13:00'] ) }}
-        {{ $errors->first('heure_fin') }}
+        {{ Form::label('creneau', 'Créneau') }}
+        {{ Form::select('creneau', $creneaux, null, ['class' => 'form-control']) }}
+        {{ $errors->first('creneau') }}
     </div>
 
     <div class="form-group">

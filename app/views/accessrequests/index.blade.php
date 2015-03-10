@@ -37,11 +37,15 @@
             @endif
                 <td>{{ $accessrequest->nom }}</td>
                 <td>{{ $accessrequest->prenom }}</td>
-                <td>{{ $accessrequest->role }}</td>
+                <td>{{ Participant::$roles[$accessrequest->role] }}</td>
                 <td>{{ $accessrequest->entreprise }}</td>
                 <td> {{ $accessrequest->statut }}</td>
-                <td><a href="{{ route('accessrequests.show', $accessrequest->id) }}"><button type="button" role="link" class="btn btn-primary btn-sm">Voir</button></a></td>
-            </tr>
+                @if($accessrequest->statut == 'En attente')
+                    <td><a href="{{ route('accessrequests.show', $accessrequest->id) }}"><button type="button" role="link" class="btn btn-primary btn-sm">Voir</button></a></td>
+                @else
+                    <td></td>
+                @endif
+                </tr>
         @endforeach
         </tbody>
     </table>

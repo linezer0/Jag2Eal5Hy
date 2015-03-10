@@ -38,7 +38,7 @@
                     <td>{{ $participant->nom }}</td>
                     <td>{{ $participant->prenom }}</td>
                     <td>{{ $participant->email }}</td>
-                    <td>{{ $participant->role }}</td>
+                    <td>{{ Participant::$roles[$participant->role] }}</td>
 
 
                 </tr>

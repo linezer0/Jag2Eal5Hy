@@ -11,5 +11,13 @@ class Participant extends \Eloquent {
         'telephone' => 'between:5,25'
     ];
 
+    public static $roles = [
+        'employe_media' => "Employé média",
+        'employe_film' => 'Employé film',
+        'jury' => 'Jury',
+        'invite' => 'Invité',
+        'autre' => 'Autre'
+    ];
+
     public static $niveaux_accreditation = [0, 1, 2, 3, 4, 5, 6];
 }

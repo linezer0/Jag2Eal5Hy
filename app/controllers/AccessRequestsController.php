@@ -105,7 +105,8 @@ class AccessRequestsController extends \BaseController {
             'email' => $accessrequest->email,
             'date_naissance' => new DateTime($accessrequest->date_naissance),
             'telephone' => $accessrequest->telephone,
-            'role' => $accessrequest->role
+            'role' => $accessrequest->role,
+            'niveau_accreditation' => 2
         ]);
 
         $user = User::create([
@@ -116,7 +117,6 @@ class AccessRequestsController extends \BaseController {
         $user->assignProfil(Profil::where('libelle', '=', 'participant')->first());
         $accessrequest->statut = "Traitée";
         $accessrequest->save();
-
 
         // TODO :
         // TODO : envoie du mail à l'utilisateur

@@ -22,17 +22,15 @@
             <th>Heure fin</th>
             <th>Salle</th>
             <th>Film</th>
-            <th>Catégorie</th>
         </tr>
         </thead>
         <tbody>
             <tr>
-                <td>{{ $projection->date_seance }}</td>
-                <td>{{ $projection->heure_debut }}</td>
-                <td>{{ $projection->heure_fin }}</td>
-                <td>{{ $salle }}</td>
-                <td>{{$film_libelle }}</td>
-                <td> {{ $categorie }}</td>
+                <td>{{ $projection->date_projection }}</td>
+                <td>{{ Projection::$creneaux['horaires'][$projection->creneau]['heure_debut'] }}</td>
+                <td>{{ Projection::$creneaux['horaires'][$projection->creneau]['heure_fin'] }}</td>
+                <td>{{ $salle_nom }}</td>
+                <td>{{ $film_nom }}</td>
             </tr>
         </tbody>
     </table>

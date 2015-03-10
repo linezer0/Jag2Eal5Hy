@@ -9,13 +9,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
-	public $fillable = ['prenom', 'nom', 'email','date_naissance', 'password'];
+	public $fillable = ['email', 'password'];
 
 	public static $rules = [
-		'nom' => 'required|between:1,30',
-		'prenom' => 'required|between:1,30',
 		'email' => 'required|email|unique:users',
-		'date_naissance' => 'required|date',
 		'password' => 'required|min:8|confirmed'
 	];
 
@@ -50,7 +47,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$this->profils()->attach($profil);
 	}
 
-	public function removeRole($role) {
-		$this->roles()->detach($role);
+	public function removeRole($profil) {
+		$this->profils()->detach($profil);
 	}
+
+    public function participant() {
+        return $this->hasOne('Participant', 'id');
+    }
+
+    public function assignParticipant($participant) {
+        $this->participant()->attach($participant);
+    }
+
+    public function removeParticipant($participant) {
+        $this->participant()->detach($participant);
+    }
 }

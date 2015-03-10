@@ -23,18 +23,18 @@ Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
 
 // Projections
-Route::resource('projections', 'ProjectionsController', ['only' => ['index', 'create', 'store','show', 'destroy']]);
-
-Route::get('projections/create', 'ProjectionsController@create')->before('role:administrator');
+Route::resource('projections', 'ProjectionsController', ['only' => ['index', 'create', 'store','show', 'edit', 'destroy']]);
+Route::get('projections/delete/{projection}', 'ProjectionsController@supprimer');
 
 //Access requests
 Route::resource('accessrequests', 'AccessRequestsController', ['only' => ['index', 'create', 'store','show', 'destroy']]);
 Route::get('accessrequests/pending', 'AccessRequestsController@indexPending');
 Route::get('accessrequests/{accessrequests}/createUser', ['as' => 'accessrequests.createUser', 'uses' => 'AccessRequestsController@createUser']);
+
+// Participants
 Route::resource('participants', 'ParticipantsController');
 
-Route::get('/mail', function() {
-    Mail::send('emails.test', [], function($message) {
-       $message->to('thomasparker@outlook.com')->subject('Laracasts Email');
-    });
+// Test
+Route::get('test', function() {
+    return Projection::creneauDisponible('15-06-2015', 'matin', '1');
 });

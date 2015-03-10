@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateProfiluserTable extends Migration {
+class CreateProfilUserTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -18,7 +18,6 @@ class CreateProfiluserTable extends Migration {
 			$table->foreign('profil_id')->references('id')->on('profils')->onDelete('cascade');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->primary('profil_id', 'user_id');
 			$table->timestamps();
 		});
 	}
