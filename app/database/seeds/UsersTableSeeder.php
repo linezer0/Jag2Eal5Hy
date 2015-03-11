@@ -9,11 +9,10 @@ class UsersTableSeeder extends Seeder {
 	{
         User::create([
             'email' => 'thomas@iaelyon.fr',
-            'participant_id' => 1,
+            'participant_id' => null,
             'password' => Hash::make('thomas'),
             'created_at' => new DateTime(),
             'updated_at' => new DateTime()
         ]);
 	}
-
 }
