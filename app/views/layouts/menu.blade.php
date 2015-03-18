@@ -30,7 +30,7 @@
                             Hébergement <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li> {{link_to_route('projections.create', 'Ajouter un hébergement')}}</li>
+                            <li> {{link_to_route('hebergements.create', 'Ajouter un hébergement')}}</li>
                             <li> {{link_to_route('projections.index', 'Nouvelle réservation')}}</li>
                             <li> {{link_to_route('projections.create', 'Liste des réservations')}}</li>
                         </ul>

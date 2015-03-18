@@ -34,6 +34,10 @@ Route::get('accessrequests/{accessrequests}/createUser', ['as' => 'accessrequest
 // Participants
 Route::resource('participants', 'ParticipantsController');
 
+// Hebergements
+Route::resource('hebergements', 'HebergementsController', ['only' => ['index', 'create', 'store','show', 'edit', 'destroy']]);
+Route::get('hebergements/delete/{hebergement}', 'HebergementsController@supprimer');
+
 // Test
 Route::get('test', function() {
     return Projection::creneauDisponible('15-06-2015', 'matin', '1');

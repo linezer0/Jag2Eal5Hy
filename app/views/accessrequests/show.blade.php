@@ -20,4 +20,3 @@
 
     <a href="{{ route('accessrequests.createUser', ['accessrequestid' => $accessrequest->id]) }}"><button type="button" role="link" class="btn btn-success">Accepter </button></a>
 @stop
-

@@ -14,5 +14,13 @@ class UsersTableSeeder extends Seeder {
             'created_at' => new DateTime(),
             'updated_at' => new DateTime()
         ]);
+
+				User::create([
+						'email' => 'william@iaelyon.fr',
+						'participant_id' => null,
+						'password' => Hash::make('william'),
+						'created_at' => new DateTime(),
+						'updated_at' => new DateTime()
+				]);
 	}
 }

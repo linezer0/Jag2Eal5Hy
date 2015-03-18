@@ -16,7 +16,7 @@ class CreateHebergementsTable extends Migration {
 		{
             $table->integer('no_siret')->unsigned();
             $table->primary('no_siret');
-            $table->integer('nom');
+            $table->string('nom',50);
             $table->string('adresse', 100);
             $table->enum('etoiles', [0, 1, 2, 3, 4, 5]);
             $table->enum('type_hebergement', ['auberge','hotel', 'villa']);
