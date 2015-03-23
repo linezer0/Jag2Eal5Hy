@@ -67,10 +67,40 @@ class Projection extends \Eloquent {
             ->where('projections.date_projection', '=', $date)
             ->where('projections.salle_id', '=', $salle)
             ->get();
-        dd(DB::getQueryLog());
         if($result == null)
-            return false;
-        else
             return true;
+        else
+            return false;
+    }
+
+    public function participants() {
+        return $this->belongsToMany('Participant');
+    }
+
+    public function hasParticipant($idParticipant) {
+        foreach($this->participants as $participant) {
+            if($participant->id == $idParticipant) return true;
+        }
+        return false;
+    }
+
+    public function assignParticipant($participant) {
+        $this->participants()->attach($participant);
+    }
+
+    public function removeParticipant($participant) {
+        $this->participants()->detach($participant);
+    }
+
+    public function updatePlaces($mode) {
+        if($mode == 'reservation') {
+            $this->places_disponibles - 1;
+            $this->places_reservees + 1;
+        }
+        else if($mode == 'desistement') {
+            $this->places_disponibles + 1;
+            $this->places_reservees - 1;
+        }
+        $this->save();
     }
 }

@@ -1,60 +1,45 @@
 <?php
 
-class UsersController extends \BaseController {
+class ReservationsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
+	 * GET /reservations
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($idParticipant)
 	{
-		return View::make('users.index', ['users' => User::with('roles')->get()]);
-	}
+        $reservations = Reservation::where('participant_id', $idParticipant)->with('hebergement')->get();
 
+        return View::make('reservations.index', ['reservations' => $reservations]);
+	}
 
 	/**
 	 * Show the form for creating a new resource.
+	 * GET /reservations/create
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		return View::make('users.create');
+		//
 	}
-
 
 	/**
 	 * Store a newly created resource in storage.
+	 * POST /reservations
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		$validation = Validator::make(Input::all(), User::$rules);
-
-		if($validation->fails()) {
-			return Redirect::back()->withErrors($validation)->withInput();
-		}
-
-		$user = User::create([
-			'nom' => Input::get('nom'),
-			'prenom' => Input::get('prenom'),
-			'email' => Input::get('email'),
-			'date_naissance' => Input::get('date_naissance'),
-			'password' => Hash::make(Input::get('password'))
-		]);
-
-		$user->assignProfil(Profil::whereLibelle('participant')->first());
-
-		$user->save();
-
-		return Redirect::route('profile')->with('flash_message', 'L\'utilisateur a bien été créé !');
+		//
 	}
-
 
 	/**
 	 * Display the specified resource.
+	 * GET /reservations/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -64,9 +49,9 @@ class UsersController extends \BaseController {
 		//
 	}
 
-
 	/**
 	 * Show the form for editing the specified resource.
+	 * GET /reservations/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -76,9 +61,9 @@ class UsersController extends \BaseController {
 		//
 	}
 
-
 	/**
 	 * Update the specified resource in storage.
+	 * PUT /reservations/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -88,9 +73,9 @@ class UsersController extends \BaseController {
 		//
 	}
 
-
 	/**
 	 * Remove the specified resource from storage.
+	 * DELETE /reservations/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

@@ -59,14 +59,9 @@ class ParticipantsController extends \BaseController {
 
         $participant->user_id = $user->id;
         $participant->save();
-
         $user->participant_id = $participant->id;
-        $user->hasProfil(Profil::where('libelle', 'participant'));
         $user->save();
-
-        $accessrequest = AccessRequest::where('email', '=', $participant)->first();
-        $accessrequest->statut = 'Traitée';
-        $accessrequest->save();
+        $user->assignProfil(Profil::whereLibelle('participant')->first());
 
         return Redirect::route('profile')->with('flash_message', 'Le participant a bien été créé !');
 	}
@@ -118,5 +113,9 @@ class ParticipantsController extends \BaseController {
 	{
 		//
 	}
+
+    public function reserverPlaceProjection($idProjection) {
+        Auth::user()->participant->assignProjection(Projection::find($idProjection));
+    }
 
 }

@@ -13,6 +13,7 @@
 
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 Route::get('profile', ['as' => 'profile', 'uses' => 'PagesController@profile'])->before('customAuth');
+Route::get('administration',['as' => 'administration', 'uses' => 'PagesController@administration'])->before('customAuth');
 
 // Registration
 Route::resource('users', 'UsersController', ['only' => ['index', 'create', 'store', 'destroy']]);
@@ -23,8 +24,7 @@ Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
 
 // Projections
-Route::resource('projections', 'ProjectionsController', ['only' => ['index', 'create', 'store','show', 'edit', 'destroy']]);
-Route::get('projections/delete/{projection}', 'ProjectionsController@supprimer');
+Route::resource('projections', 'ProjectionsController', ['only' => ['index', 'create', 'store','show', 'edit', 'update', 'destroy']]);
 
 //Access requests
 Route::resource('accessrequests', 'AccessRequestsController', ['only' => ['index', 'create', 'store','show', 'destroy']]);
@@ -38,7 +38,13 @@ Route::resource('participants', 'ParticipantsController');
 Route::resource('hebergements', 'HebergementsController', ['only' => ['index', 'create', 'store','show', 'edit', 'destroy']]);
 Route::get('hebergements/delete/{hebergement}', 'HebergementsController@supprimer');
 
+// Participant.projections
+Route::resource('participants.reservationProjections', 'ReservationProjectionsController');
+
+// Réservations
+Route::resource('participants.reservations', 'ReservationsController');
+
 // Test
 Route::get('test', function() {
-    return Projection::creneauDisponible('15-06-2015', 'matin', '1');
+    return View::make('test.index');
 });

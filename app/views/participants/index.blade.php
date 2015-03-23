@@ -22,7 +22,6 @@
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
-            <th>Rôle</th>
         </tr>
         </thead>
         <tbody>
@@ -38,9 +37,6 @@
                     <td>{{ $participant->nom }}</td>
                     <td>{{ $participant->prenom }}</td>
                     <td>{{ $participant->email }}</td>
-                    <td>{{ Participant::$roles[$participant->role] }}</td>
-
-
                 </tr>
                 @endforeach
         </tbody>

@@ -14,11 +14,11 @@ class CreateHebergementServiceTable extends Migration {
 	{
 		Schema::create('hebergement_service', function(Blueprint $table)
 		{
-			$table->increments('id');
 			$table->integer('hebergement_no_siret')->unsigned()->index();
 			$table->foreign('hebergement_no_siret')->references('no_siret')->on('hebergements')->onDelete('cascade');
 			$table->integer('service_id')->unsigned()->index();
 			$table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->primary('hebergement_no_siret', 'service_id');
 			$table->timestamps();
 		});
 	}

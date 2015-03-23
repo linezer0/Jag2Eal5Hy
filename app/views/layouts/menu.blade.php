@@ -14,7 +14,7 @@
                 @if(! Auth::check())
                     <li @if(Request::path() == 'accessrequests/create') class="active" @endif>{{ link_to_route('accessrequests.create', 'Demande d\'accès') }}</li>
                     <li @if(Request::path() === 'login') class="active" @endif>{{ link_to('/login', 'Login') }}</li>
-                @else
+                @elseif(Auth::user()->hasProfil('administrator'))
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                             Gestion des utilisateurs <span class="caret"></span>
@@ -42,6 +42,26 @@
                         <ul class="dropdown-menu" role="menu">
                             <li> {{link_to_route('projections.create', 'Nouvelle projection')}}</li>
                             <li> {{link_to_route('projections.index', 'Toutes les projections')}}</li>
+                        </ul>
+                    </li>
+                    <li>{{ link_to('/logout', 'Logout') }}</li>
+                @elseif(Auth::user()->hasProfil('participant'))
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            Hébergement <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li> {{link_to_route('participants.reservations.create', 'Réserver un hébergement')}}</li>
+                            <li> {{link_to_route('participants.reservations.index', 'Liste des réservations')}}</li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            Projections <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li> {{link_to_route('participants.reservationProjections.create', 'Réserver une place', Auth::user()->participant->id)}}</li>
+                            <li> {{link_to_route('participants.reservationProjections.index', 'Toutes mes réservations', Auth::user()->participant->id)}}</li>
                         </ul>
                     </li>
                     <li>{{ link_to('/logout', 'Logout') }}</li>

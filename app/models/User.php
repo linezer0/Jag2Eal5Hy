@@ -47,12 +47,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$this->profils()->attach($profil);
 	}
 
-	public function removeRole($profil) {
+	public function removeProfil($profil) {
 		$this->profils()->detach($profil);
 	}
 
     public function participant() {
-        return $this->hasOne('Participant', 'id');
+        return $this->hasOne('Participant');
     }
 
     public function assignParticipant($participant) {

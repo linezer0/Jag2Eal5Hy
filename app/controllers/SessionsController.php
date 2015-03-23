@@ -22,8 +22,12 @@ class SessionsController extends \BaseController {
 	{
 		$attempt = Auth::attempt($input = Input::only('email', 'password'));
 		if($attempt) {
-			return Redirect::to('/profile')->with('flash_message', 'Vous êtes maintenant connecté ! Content de vous revoir !');
-		}
+            if(Auth::user()->hasProfil('administrator'))
+			    return Redirect::to('/administration')->with('flash_message', 'Vous êtes maintenant connecté ! Content de vous revoir !');
+		    else if(Auth::user()->hasProfil('participant'))
+                return Redirect::to('/profile')->with('flash_message', 'Vous êtes maintenant connecté ! Content de vous revoir !');
+
+        }
 		else {
 			return Redirect::back()->with(['flash_message' => 'Nous avons pas pu vous identifier. Essayez à nouveau !'])->withInput();
 		}

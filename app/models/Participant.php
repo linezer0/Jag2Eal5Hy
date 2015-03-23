@@ -20,4 +20,24 @@ class Participant extends \Eloquent {
     ];
 
     public static $niveaux_accreditation = [0, 1, 2, 3, 4, 5, 6];
+
+    public function projections() {
+        return $this->belongsToMany('Projection');
+    }
+
+    public function hasProjection($idProjection) {
+        foreach($this->projections as $projection) {
+            if($projection->id == $idProjection) return true;
+        }
+        return false;
+    }
+
+    public function assignProjection($projection) {
+        $this->projections()->attach($projection);
+    }
+
+    public function removeProjection($projection) {
+        $this->projections()->detach($projection);
+    }
+
 }

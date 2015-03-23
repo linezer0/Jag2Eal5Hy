@@ -16,6 +16,7 @@ class CreateReservationsTable extends Migration {
 		{
 			$table->increments('id');
             $table->integer('participant_id')->unsigned();
+            $table->integer('hebergement_id')->unsigned();
             $table->date('date_debut');
             $table->date('date_fin');
             $table->tinyInteger('duree');
@@ -24,7 +25,9 @@ class CreateReservationsTable extends Migration {
 			$table->timestamps();
 
             $table->foreign('participant_id')->references('id')->on('participants');
-		});
+            $table->foreign('hebergement_id')->references('no_siret')->on('hebergements');
+
+        });
 	}
 
 

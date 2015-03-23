@@ -11,12 +11,20 @@ class PagesController extends \BaseController {
 	public function home()
 	{
 		if(Auth::check()) {
-			return Redirect::to('/profile');
+            if(Auth::user()->hasProfil('administrator'))
+			    return Redirect::to('/administration');
+            else
+                Redirect::to('/profile');
 		}
-		return View::make('pages.home');
+        else
+		    return View::make('pages.home');
 	}
 
 	public function profile() {
 		return View::make('pages.profile');
 	}
+
+    public function administration() {
+        return View::make('pages.administration');
+    }
 }

@@ -11,8 +11,7 @@ class AccessRequestsController extends \BaseController {
 	public function index()
 	{
 		$accessrequests = AccessRequest::all();
-
-		return View::make('accessrequests.index', ['accessrequests' => $accessrequests]);
+        return View::make('accessrequests.index', ['accessrequests' => $accessrequests]);
 
 
 	}
@@ -51,7 +50,7 @@ class AccessRequestsController extends \BaseController {
 			'role' => Input::get('role'),
 			'entreprise' => Input::get('entreprise'),
 			'justification' => Input::get('justification'),
-			'statut' => 'En attente',
+			'statut' => 'en_attente',
 			'created_at' => time(),
 			'updated_at' => time()
 		]);
@@ -115,11 +114,17 @@ class AccessRequestsController extends \BaseController {
         ]);
 
         $user->assignProfil(Profil::where('libelle', '=', 'participant')->first());
-        $accessrequest->statut = "Traitée";
+        $accessrequest->statut = "acceptee";
         $accessrequest->save();
 
         // TODO :
         // TODO : envoie du mail à l'utilisateur
-		return Redirect::route('accessrequests.show', $id)->with('flash_message', 'L\'utilisateur a bien été créé !');
+		return Redirect::route('participants.index')->with('flash_message', 'L\'utilisateur a bien été créé !');
 	}
+
+    public function changeAccessRequestStatus($email) {
+        $accessrequest = AccessRequest::where('email', '=', $email)->first();
+        $accessrequest->statut = 'Traitée';
+        $accessrequest->save();
+    }
 }

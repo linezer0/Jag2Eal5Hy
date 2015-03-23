@@ -7,7 +7,7 @@ class UsersTableSeeder extends Seeder {
 
 	public function run()
 	{
-        User::create([
+        $thomas = User::create([
             'email' => 'thomas@iaelyon.fr',
             'participant_id' => null,
             'password' => Hash::make('thomas'),
@@ -15,12 +15,15 @@ class UsersTableSeeder extends Seeder {
             'updated_at' => new DateTime()
         ]);
 
-				User::create([
-						'email' => 'william@iaelyon.fr',
-						'participant_id' => null,
-						'password' => Hash::make('william'),
-						'created_at' => new DateTime(),
-						'updated_at' => new DateTime()
-				]);
+        $william = User::create([
+                'email' => 'william@iaelyon.fr',
+                'participant_id' => null,
+                'password' => Hash::make('william'),
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+        ]);
+
+        $thomas->assignProfil(Profil::whereLibelle('administrator')->first());
+        $william->assignProfil(Profil::whereLibelle('administrator')->first());
 	}
 }
