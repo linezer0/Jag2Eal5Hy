@@ -45,7 +45,7 @@ class ReservationProjectionsController extends \BaseController {
 
         Auth::user()->participant->assignProjection($projection, $input['places']);
         $projection->bookPlaces($input['places']);
-        return Redirect::route('profile')->with('flash_message', 'Votre place de projection a bien été réservée. Merci!');
+        return Redirect::route('profile')->with('flash_message', 'Vos places de projection ont bien été réservée. Merci!');
 	}
 
 	/**

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Liste des utilisateurs
+    Liste des chambres
 @stop
 
 @section('author')
@@ -9,24 +9,26 @@
 @stop
 
 @section('description')
-    User list
+    Chambre list
 @stop
 
 @section('content')
-    <h1>Liste des utilisateurs</h1>
+    <h1>Liste des Chambres</h1>
     <?php $striped = true; ?>
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Email</th>
-            <th>Rôle</th>
+          <th>Hebergement</th>
+            <th>Libelle</th>
+            <th>Capacite</th>
+            <th>Type Chambre</th>
+            <th>Prix (€)</th>
+
         </tr>
         </thead>
         <tbody>
-        @foreach($participants as $participant)
+
+        @foreach($chambres as $chambre)
             @if($striped)
                 <tr class = "table-striped">
                     <?php $striped = false; ?>
@@ -34,11 +36,13 @@
                         <?php $striped = true; ?>
                 <tr>
                     @endif
-                    <td>{{ $participant->id }}</td>
-                    <td>{{ $participant->nom }}</td>
-                    <td>{{ $participant->prenom }}</td>
-                    <td>{{ $participant->email }}</td>
-                    <td>{{ Participant::$roles[$participant->role] }}</td>
+
+                   <td>{{ $chambre->hebergement->nom }}</td>
+                    <td>{{ $chambre->libelle }}</td>
+                    <td>{{ $chambre->capacite }}</td>
+                    <td>{{ $chambre->type_chambre }}</td>
+                    <td>{{ $chambre->prix_chambre }}</td>
+
 
 
                 </tr>

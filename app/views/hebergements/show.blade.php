@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Nouvel hébergement
+    Voir Hebergement
 @stop
 
 @section('author')
@@ -9,35 +9,43 @@
 @stop
 
 @section('description')
-    Hebergement creation page
+    Hebergement show page
 @stop
 
 @section('content')
-
-    <table class="table table-striped">
+    <h1>Liste des Chambres pour {{$hebergement->nom}}</h1>
+    <?php $striped = true; ?>
+    <table class="table table-striped table-bordered">
         <thead>
         <tr>
-            <th>no_siret</th>
-            <th>nom</th>
-            <th>adresse</th>
-            <th>etoiles</th>
-            <th>type</th>
-            <th>nom_contact</th>
-            <th>mail_contact</th>
+
+            <th>Libelle</th>
+            <th>Capacite</th>
+            <th>Type Chambre</th>
+            <th>Prix (€)</th>
+
         </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{ $hebergement->no_siret }}</td>
-                <td>{{ $hebergement->nom }}</td>
-                <td>{{ $hebergement->adresse }}</td>
-                <td>{{ $hebergement->etoiles }}</td>
-                <td>{{ $hebergement->type }}</td>
-                <td>{{ $hebergement->nom_contact }}</td>
-                <td>{{ $hebergement->mail_contact }}</td>
+        @foreach($hebergement->chambres as $chambre)
+            @if($striped)
+                <tr class = "table-striped">
+                    <?php $striped = false; ?>
+                    @else
+                        <?php $striped = true; ?>
+                <tr>
+                    @endif
 
-            </tr>
+
+                    <td>{{ $chambre->libelle }}</td>
+                    <td>{{ $chambre->capacite }}</td>
+                    <td>{{ $chambre->type_chambre }}</td>
+                    <td>{{ $chambre->prix_chambre }}</td>
+
+
+
+                </tr>
+                @endforeach
         </tbody>
     </table>
-
 @stop

@@ -18,7 +18,7 @@ class CreateProfilUserTable extends Migration {
 			$table->foreign('profil_id')->references('id')->on('profils')->onDelete('cascade');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->primary('profil_id', 'user_id');
+            $table->primary(['profil_id', 'user_id']);
 			$table->timestamps();
 		});
 	}

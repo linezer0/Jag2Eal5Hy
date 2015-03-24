@@ -14,7 +14,7 @@ class CreateHebergementsTable extends Migration {
 	{
 		Schema::create('hebergements', function(Blueprint $table)
 		{
-            $table->integer('no_siret')->unsigned();
+            $table->string('no_siret', 14);
             $table->primary('no_siret');
             $table->string('nom',50);
             $table->string('adresse', 100);

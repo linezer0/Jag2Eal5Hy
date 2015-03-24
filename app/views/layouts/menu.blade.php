@@ -31,8 +31,9 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li> {{link_to_route('hebergements.create', 'Ajouter un hébergement')}}</li>
-                            <li> {{link_to_route('projections.index', 'Nouvelle réservation')}}</li>
-                            <li> {{link_to_route('projections.create', 'Liste des réservations')}}</li>
+                            <li> {{link_to_route('chambres.create', 'Ajouter une chambre')}}</li>
+                            <li> {{link_to_route('hebergements.index', 'Liste des hébergements')}}</li>
+                            <li> {{link_to_route('chambres.index', 'Liste des chambres')}}</li>
                         </ul>
                     </li>
                     <li role="presentation" class="dropdown">

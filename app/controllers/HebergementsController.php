@@ -14,6 +14,8 @@ class HebergementsController extends \BaseController {
 	}
 
 
+
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -21,9 +23,11 @@ class HebergementsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('hebergements.create');
+		$services = DB::table('services')->lists('libelle', 'id');
+		return View::make('hebergements.create',['services'=> $services]);
 
 	}
+
 
 
 	/**
@@ -31,16 +35,18 @@ class HebergementsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store ()
+
 	{
         $validation = Validator::make(Input::all(), Hebergement::$rules);
 
         if($validation->fails()) {
-            return Redirect::back()->with('flash_message', 'Problème lors de la création de l hébergement')->withErrors($validation)->withInput();
+
+          return Redirect::back()->with('flash_message', 'Problème lors de la création de l hébergement')->withErrors($validation)->withInput();
         }
 
-        $hebergement = hebergement::create([
-            'no_siret' => Input::get('no_siret'),
+        $hebergement = Hebergement::create([
+            'no_siret' =>Input::get('no_siret'),
             'nom' => Input::get('nom'),
             'adresse' => Input::get('adresse'),
             'etoiles' => Input::get('etoiles'),
@@ -49,21 +55,17 @@ class HebergementsController extends \BaseController {
             'mail_contact' => Input::get('mail_contact'),
             'created_at' => new DateTime(),
             'updated_at' => new DateTime()
+
         ]);
 
 
-/**
-        $participant->user_id = $user->id;
-        $participant->save();
+				foreach(Input::get('services') as $service)
+				{
+					Hebergement::find(Input::get('no_siret'))->assignService(Service::find($service));
+				}
 
-        $user->participant_id = $participant->id;
-        $user->hasProfil(Profil::where('libelle', 'participant'));
-        $user->save();
 
-        $accessrequest = AccessRequest::where('email', '=', $participant)->first();
-        $accessrequest->statut = 'Traitée';
-        $accessrequest->save();
-*/
+
         return Redirect::route('hebergements.index')->with('flash_message', 'L\'hébergement a bien été créé !');
 	}
 
@@ -74,33 +76,52 @@ class HebergementsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($no_siret)
 	{
-		//
+		$hebergement = Hebergement::with('chambres')->find($no_siret);
+
+		//dd(Hebergement::find($no_siret));
+		return View::make('hebergements.show', ['hebergement' => $hebergement]);
 	}
 
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  int  $i
 	 * @return Response
 	 */
-	public function edit($id)
+
+	public function edit($no_siret)
 	{
-		//
+			$hebergement = Hebergement::find($no_siret);
+			//$etoiles = Hebergement::$etoiles;
+			//$services = DB::table('services')->lists('libelle', 'id');
+
+
+			return View::make('hebergements.edit', ['hebergement' => $hebergement]);
+
 	}
 
-
 	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+	* Update the specified resource in storage.
+	* PUT /projections/{id}
+	*
+	* @param  int  $id
+	* @return Response
+	*/
+	public function update($no_siret)
 	{
-		//
+			$hebergement = Hebergement::find($no_siret);
+			$input = Input::all();
+
+			$hebergement->etoiles = $input['etoiles'];
+			$hebergement->nom_contact = $input['nom_contact'];
+			$hebergement->mail_contact = $input['mail_contact'];
+			$hebergement->updated_at = new DateTime();
+			$hebergement->save();
+
+			return Redirect::route('hebergements.index')->with('flash_message', 'L\'hebergement a bien été modifié ');
 	}
 
 
@@ -110,9 +131,10 @@ class HebergementsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		//
+	public function destroy($no_siret) {
+
+			Hebergement::destroy($no_siret);
+			return Redirect::route('hebergements.index');
 	}
 
 

@@ -15,15 +15,14 @@ class CreateChambresTable extends Migration {
 		Schema::create('chambres', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->integer('hebergement_no_siret')->unsigned();
+            $table->string('hebergement_no_siret',14);
             $table->string('libelle',50);
             $table->integer('capacite');
-            $table->enum('type', ['simple','double','suite']);
-            $table->enum('statut', ['disponible','indisponible']);
+            $table->enum('type_chambre', ['simple','double','suite']);
             $table->float('prix_chambre',10);
 			$table->timestamps();
 
-            $table->foreign('hebergement_no_siret')->references('no_siret')->on('hebergements');
+            $table->foreign('hebergement_no_siret')->references('no_siret')->on('hebergements')->onDelete('cascade');
         });
 	}
 
