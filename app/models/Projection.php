@@ -47,6 +47,8 @@ class Projection extends \Eloquent {
         ]
     ];
 
+    public static $nb_places_projections =  4;
+
 
 
 	protected $table = 'projections';
@@ -92,15 +94,16 @@ class Projection extends \Eloquent {
         $this->participants()->detach($participant);
     }
 
-    public function updatePlaces($mode) {
-        if($mode == 'reservation') {
-            $this->places_disponibles - 1;
-            $this->places_reservees + 1;
-        }
-        else if($mode == 'desistement') {
-            $this->places_disponibles + 1;
-            $this->places_reservees - 1;
-        }
+    public function bookPlaces($places) {
+        $this->places_disponibles = $this->places_disponibles - $places;
+        $this->places_reservees = $this->places_reservees + $places;
         $this->save();
     }
+
+    public function cancelPlaces($places = 1) {
+        $this->places_disponibles = $this->places_disponibles + $places;
+        $this->places_reservees = $this->places_reservees - $places;
+        $this->save();
+    }
+
 }

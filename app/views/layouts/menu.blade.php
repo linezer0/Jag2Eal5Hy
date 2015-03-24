@@ -60,7 +60,7 @@
                             Projections <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li> {{link_to_route('participants.reservationProjections.create', 'Réserver une place', Auth::user()->participant->id)}}</li>
+                            <li> {{link_to_route('participants.reservationProjections.create', 'Réserver des places', Auth::user()->participant->id)}}</li>
                             <li> {{link_to_route('participants.reservationProjections.index', 'Toutes mes réservations', Auth::user()->participant->id)}}</li>
                         </ul>
                     </li>

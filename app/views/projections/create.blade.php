@@ -14,7 +14,7 @@
 
 @section('content')
 
-    <h1>Modifier une projection</h1>
+    <h1>Créer une projection</h1>
     {{ Form::open(['route' => 'projections.store']) }}
     <div class="form-group">
         {{ Form::label('film', 'Film à projeter') }}

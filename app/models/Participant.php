@@ -22,7 +22,7 @@ class Participant extends \Eloquent {
     public static $niveaux_accreditation = [0, 1, 2, 3, 4, 5, 6];
 
     public function projections() {
-        return $this->belongsToMany('Projection');
+        return $this->belongsToMany('Projection')->withPivot('places');
     }
 
     public function hasProjection($idProjection) {
@@ -32,8 +32,8 @@ class Participant extends \Eloquent {
         return false;
     }
 
-    public function assignProjection($projection) {
-        $this->projections()->attach($projection);
+    public function assignProjection($projection, $places = 0) {
+        $this->projections()->attach($projection, ['places' => $places]);
     }
 
     public function removeProjection($projection) {

@@ -8,9 +8,9 @@ class ReservationProjectionsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($idParticipant)
 	{
-        $projections = Auth::user()->participant->projections->all();
+        $projections = Participant::find($idParticipant)->projections->all();
 
         return View::make('participants.reservationprojections.index', ['projections' => $projections]);
 	}
@@ -23,7 +23,12 @@ class ReservationProjectionsController extends \BaseController {
 	 */
 	public function create()
 	{
+        $participant = Auth::user()->participant;
         $projections = Projection::where('places_disponibles', '>', 0)->get();
+        foreach($projections as $index => $projection) {
+            if($participant->hasProjection($projection->id))
+                unset($projections[$index]);
+        }
 		return View::make('participants.projections.index', ['projections' => $projections]);
 	}
 
@@ -36,9 +41,10 @@ class ReservationProjectionsController extends \BaseController {
 	public function store()
 	{
 		$input = Input::all();
+        $projection = Projection::find($input['projection']);
 
-        Auth::user()->participant->assignProjection($projection = Projection::find($input['projection']));
-        $projection->updatePlaces('reservation');
+        Auth::user()->participant->assignProjection($projection, $input['places']);
+        $projection->bookPlaces($input['places']);
         return Redirect::route('profile')->with('flash_message', 'Votre place de projection a bien été réservée. Merci!');
 	}
 
@@ -78,21 +84,12 @@ class ReservationProjectionsController extends \BaseController {
 		//
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /reservationprojections/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-
-    // TODO : NE MARCHE PAS
-	public function destroy($idParticipant, $idProjection)
+	public function delete($idParticipant, $idProjection)
 	{
-		Participant::find($idParticipant)->removeProjection($projection = Projection::find($idProjection));
-        $projection->updatePlaces('desistement');
-
-        return Redirect::to('/')->with('flash_message', 'Votre réservation a été annulée.');
+        $places = Participant::find($idParticipant)->projections->find($idProjection)->pivot->places;
+        Participant::find($idParticipant)->removeProjection($projection = Projection::find($idProjection));
+        $projection->cancelPlaces($places);
+        return Redirect::to('/profile')->with('flash_message', 'Votre réservation a été annulée.');
 	}
 
 }

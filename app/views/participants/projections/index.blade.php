@@ -37,12 +37,20 @@
                 <td>{{ $projection->film->nom }}</td>
                 <td>{{ $projection->places_disponibles }}</td>
                 <td>
-                    <table>
-                        {{Form::open(['route' => 'participants.reservationProjections.store']) }}
-                        {{ Form::hidden('projection', $projection->id) }}
-                        {{Form::submit('Réserver', ['class' => 'btn btn-primary'])}}
+                        {{Form::open(['route' => 'participants.reservationProjections.store', 'class' => 'form-inline']) }}
+                            <table>
+                                <tr>
+                                    <td>
+                                        {{ Form::label('places', 'Places') }}
+                                        {{ Form::selectRange('places', 1, Projection::$nb_places_projections, null, ['class' => 'form-control select_number']); }}
+                                        {{ Form::hidden('projection', $projection->id) }}
+                                    </td>
+                                    <td>
+                                        {{Form::submit('Réserver', ['class' => 'btn btn-primary'])}}
+                                    </td>
+                                </tr>
+                            </table>
                         {{ Form::close() }}
-                    </table>
                 </td>
             </tr>
         @endforeach

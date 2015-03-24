@@ -39,7 +39,9 @@ Route::resource('hebergements', 'HebergementsController', ['only' => ['index', '
 Route::get('hebergements/delete/{hebergement}', 'HebergementsController@supprimer');
 
 // Participant.projections
-Route::resource('participants.reservationProjections', 'ReservationProjectionsController');
+Route::resource('participants.reservationProjections', 'ReservationProjectionsController', ['only' => ['index', 'create', 'store']]);
+Route::get('participants/{participant}/reservationProjections/{projection}/delete', ['as' => 'participants.reservationProjections.delete', 'uses' => 'ReservationProjectionsController@delete']);
+
 
 // Réservations
 Route::resource('participants.reservations', 'ReservationsController');
