@@ -30,6 +30,7 @@ Route::resource('projections', 'ProjectionsController', ['only' => ['index', 'cr
 Route::resource('accessrequests', 'AccessRequestsController', ['only' => ['index', 'create', 'store','show', 'destroy']]);
 Route::get('accessrequests/pending', 'AccessRequestsController@indexPending');
 Route::get('accessrequests/{accessrequests}/createUser', ['as' => 'accessrequests.createUser', 'uses' => 'AccessRequestsController@createUser']);
+Route::get('accessrequests/{accessrequests}/reject', ['as' => 'accessrequests.reject', 'uses' => 'AccessRequestsController@reject']);
 
 // Participants
 Route::resource('participants', 'ParticipantsController');
@@ -45,7 +46,7 @@ Route::get('participants/{participant}/reservationProjections/{projection}/delet
 
 // Réservations
 Route::resource('participants.reservations', 'ReservationsController');
-
+Route::post('participants/{participants}/reservations/selectChambre', ['as' => 'participants.reservations.selectChambre', 'uses' => 'ReservationsController@selectChambre']);
 // Chambres
 Route::resource('chambres', 'ChambresController', ['only' => ['index', 'create', 'store','show', 'edit', 'destroy']]);
 Route::get('chambres/delete/{chambre}', 'ChambresController@supprimer');

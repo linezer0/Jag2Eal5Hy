@@ -3,6 +3,12 @@
 class AccessRequest extends \Eloquent {
 	protected $fillable = ['nom', 'prenom', 'email','date_naissance', 'telephone', 'role', 'entreprise', 'justification', 'statut'];
 
+    public static $statuts = [
+        'en_attente' => 'En attente',
+        'acceptee' => 'Acceptée',
+        'rejetee' => 'Rejetée'
+    ];
+
 	public static $rules = [
 		'nom' => 'required|between:1,30',
 		'prenom' => 'required|between:1,30',

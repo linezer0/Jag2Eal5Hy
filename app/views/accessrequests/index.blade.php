@@ -41,11 +41,11 @@
                     <td>{{ $accessrequest->prenom }}</td>
                     <td>{{ Participant::$roles[$accessrequest->role] }}</td>
                     <td>{{ $accessrequest->entreprise }}</td>
-                    <td> {{ $accessrequest->statut }}</td>
+                    <td> {{ AccessRequest::$statuts[$accessrequest->statut] }}</td>
                     @if($accessrequest->statut == 'en_attente')
                         <td><a href="{{ route('accessrequests.show', $accessrequest->id) }}"><button type="button" role="link" class="btn btn-primary btn-sm">Voir</button></a></td>
                     @else
-                        <td></td>
+                        <td><a href="{{ route('accessrequests.show', $accessrequest->id) }}"><button type="button" role="link" class="btn btn-default btn-sm" disabled="disabled">Traitée</button></a></td>
                     @endif
                     </tr>
             @endforeach

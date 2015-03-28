@@ -17,11 +17,11 @@
     <table class="table table-striped">
         <thead>
         <tr>
-          //  <th>no_siret</th>
-            <th>libelle</th>
-            <th>capacite</th>
-            <th>type_chambre</th>
-            <th>prix_chambre</th>
+            <th>Hôtel</th>
+            <th>Libellé</th>
+            <th>Capacité</th>
+            <th>Type de chambre</th>
+            <th>Prix à la nuit</th>
 
         </tr>
         </thead>

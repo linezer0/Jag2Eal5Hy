@@ -1,7 +1,7 @@
 <?php
 
 class Reservation extends \Eloquent {
-	protected $fillable = ['participant_id', 'hebergement_id', 'date_debut', 'date_fin', 'duree', 'montant_total', 'nombre_personnes', 'created_at', 'updated_at'];
+	protected $fillable = ['participant_id', 'chambre_id', 'date_debut', 'date_fin', 'duree', 'montant_total', 'created_at', 'updated_at'];
 
     public function participant() {
         $this->hasOne('Participant');
@@ -15,20 +15,8 @@ class Reservation extends \Eloquent {
         $this->participant->detach($participant);
     }
 
-    public function hebergement() {
-        $this->hasOne('Hebergement');
-    }
-
-    public function assignHebergement($hebergement) {
-        $this->hebergement->attach($hebergement);
-    }
-
-    public function removeHebergement($hebergement) {
-        $this->hebergement->detach($hebergement);
-    }
-
-    public function chambres() {
-        $this->belongsToMany('Chambre');
+    public function chambre() {
+        return $this->belongsTo('Chambre');
     }
 
     public function assignChambre($chambre) {
@@ -37,5 +25,14 @@ class Reservation extends \Eloquent {
 
     public function removeChambre($chambre) {
         $this->chambres->detach($chambre);
+    }
+
+    public static function datesOk($date_debut, $date_fin) {
+        $formatted_date_debut = new DateTime($date_debut);
+        $formatted_date_fin =  new DateTime($date_fin);
+
+        if($formatted_date_debut < $formatted_date_fin)
+            return true;
+        return false;
     }
 }

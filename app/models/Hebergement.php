@@ -5,7 +5,7 @@ class Hebergement extends \Eloquent {
 	protected $fillable = ['no_siret','nom','adresse','etoiles','type_hebergement','nom_contact','mail_contact','created_at', 'updated_at'];
 	protected $primaryKey = 'no_siret';
 	public static $rules = [
-				'no_siret' => 'required|unique:hebergements',
+				'no_siret' => 'required|unique:hebergements|size:14',
 				'nom' => 'required',
 				'adresse' => 'required',
 				'etoiles' => 'required',

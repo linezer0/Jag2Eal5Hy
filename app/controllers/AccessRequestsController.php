@@ -10,7 +10,7 @@ class AccessRequestsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$accessrequests = AccessRequest::all();
+		$accessrequests = AccessRequest::orderBy('statut')->get();
         return View::make('accessrequests.index', ['accessrequests' => $accessrequests]);
 
 
@@ -108,12 +108,18 @@ class AccessRequestsController extends \BaseController {
             'niveau_accreditation' => 2
         ]);
 
+
         $user = User::create([
             'email' => $accessrequest->email,
             'password' => Hash::make('hello')
         ]);
 
-        $user->assignProfil(Profil::where('libelle', '=', 'participant')->first());
+        $participant->user_id = $user->id;
+        $participant->save();
+        $user->participant_id = $participant->id;
+        $user->save();
+        $user->assignProfil(Profil::whereLibelle('participant')->first());
+
         $accessrequest->statut = "acceptee";
         $accessrequest->save();
 
@@ -121,10 +127,11 @@ class AccessRequestsController extends \BaseController {
         // TODO : envoie du mail à l'utilisateur
 		return Redirect::route('participants.index')->with('flash_message', 'L\'utilisateur a bien été créé !');
 	}
-
-    public function changeAccessRequestStatus($email) {
-        $accessrequest = AccessRequest::where('email', '=', $email)->first();
-        $accessrequest->statut = 'Traitée';
+    public function reject($id) {
+        $accessrequest = AccessRequest::find($id);
+        $accessrequest->statut = "rejetee";
         $accessrequest->save();
+
+        return Redirect::route('participants.index')->with('flash_message', 'La demande d\'accès a été refusée.');
     }
 }

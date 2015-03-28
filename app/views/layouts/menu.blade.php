@@ -7,6 +7,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+
+
             <a class="navbar-brand" href="{{ route('home') }}">WeCannes</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -52,8 +54,8 @@
                             Hébergement <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li> {{link_to_route('participants.reservations.create', 'Réserver un hébergement')}}</li>
-                            <li> {{link_to_route('participants.reservations.index', 'Liste des réservations')}}</li>
+                            <li> {{link_to_route('participants.reservations.create', 'Réserver un hébergement', Auth::user()->participant->id)}}</li>
+                            <li> {{link_to_route('participants.reservations.index', 'Liste des réservations', Auth::user()->participant->id)}}</li>
                         </ul>
                     </li>
                     <li role="presentation" class="dropdown">
@@ -68,6 +70,9 @@
                     <li>{{ link_to('/logout', 'Logout') }}</li>
                 @endif
             </ul>
+            <a href="{{ route('home') }}" class="pull-right"><img src="http://cocorico.com/wp-content/uploads/2013/05/palme-d-or-Cannes_festival.jpg" style="height:51px"></a>
+
         </div><!--/.nav-collapse -->
+
     </div>
 </nav>

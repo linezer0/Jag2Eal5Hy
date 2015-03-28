@@ -18,7 +18,7 @@
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
-            <th>no_siret</th>
+            <th>No SIRET</th>
             <th>Nom</th>
             <th>Adresse</th>
             <th>Etoiles</th>

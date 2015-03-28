@@ -17,7 +17,7 @@
     <h1>Créer un nouvel hébergement</h1>
     {{ Form::open(['route' => 'hebergements.store']) }}
         <div class="form-group">
-            {{ Form::label('no_siret', 'Le numéro de siret') }}
+            {{ Form::label('no_siret', 'No SIRET') }}
             {{ Form::text('no_siret', Input::old('no_siret'), ['class' => 'form-control', 'placeholder' => ''] ) }}
             {{ $errors->first('no_siret') }}
         </div>
@@ -66,6 +66,7 @@
             {{ Form::token(); }}
 
             {{ Form::submit('Créer hébergement', array('class' => 'btn btn-primary')) }}
+            {{ Form::close() }}
         </div>
 
 
